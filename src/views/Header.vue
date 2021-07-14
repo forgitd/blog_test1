@@ -17,8 +17,8 @@
 
           <nav class="header-menu">
             <ul>
-              <li><a href="/">主页</a></li>
-              <li><a href="/">随笔</a></li>
+              <li class="li_none_p"><a href="/">主页</a></li>
+              <li class="li_none_p"><a href="/">随笔</a></li>
             </ul>
           </nav>
 
@@ -50,6 +50,9 @@ export default {
   }
 
   .left-col {
+    position: sticky;
+    top: 655px;
+    z-index: 9;
     height: 100%;
     width: 416px;
   }
@@ -89,6 +92,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     padding-top: 128px;
+    padding-bottom: 128px;
 
   }
 
@@ -104,7 +108,7 @@ export default {
     text-transform: uppercase;
     float: none;
     min-height: 150px;
-    margin-left: -12px;
+    margin-left: -50px;
     text-align: center;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
@@ -112,6 +116,8 @@ export default {
     -webkit-box-align: center;
   }
 
-
+  .li_none_p {
+    list-style-type: none;
+  }
 
 </style>
