@@ -50,29 +50,26 @@ export default {
   }
 
   .left-col {
-    position: sticky;
-    top: 655px;
+    /*position: sticky;*/
+    /*top: 655px;*/
     z-index: 9;
-    height: 100%;
-    width: 416px;
+    /*height: 100%;*/
+    width: 300PX;
   }
 
   .left-col .overlay {
-    /*width: 100%;*/
-    width: 416px;
-    height: 180px;
+    width: 300PX;
+    height: 180PX;
     position: absolute;
     margin-top: 0;
-    margin-bottom: 128px;
   }
   .left-col #header .profilepic {
     display: block;
-    border: 5px solid #fff;
+    border: 5PX solid #fff;
     border-radius: 300px;
-    width: 128px;
-    height: 128px;
+    width: 110PX;
+    height: 110PX;
     margin: 0 auto;
-    /*padding-top: 128px;*/
     position: relative;
     overflow: hidden;
     background: #88acdb;
@@ -91,24 +88,22 @@ export default {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 128px;
-    padding-bottom: 128px;
-
+    padding-top: 128PX;
   }
 
 
   .left-col #header .header-smart-menu {
-    font-size: 12px;
-    margin-bottom: 20px;
+    font-size: 12PX;
+    margin-bottom: 20PX;
   }
 
   .left-col #header .header-menu {
     font-weight: 300;
-    line-height: 31px;
+    line-height: 31PX;
     text-transform: uppercase;
     float: none;
-    min-height: 150px;
-    margin-left: -50px;
+    min-height: 150PX;
+    margin-left: -30PX;
     text-align: center;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
