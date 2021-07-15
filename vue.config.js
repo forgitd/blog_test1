@@ -20,11 +20,19 @@ module.exports = {
 		https: false,
 		proxy: {
 			'/api': {
-				target: 'http://1.116.141.79:9090',
+				target: 'http://1.116.141.79:8082',
 				changeOrigin: true,
 				ws: true,
 				pathRewrite: {
 					'^/api': ''
+				}
+			},
+			'/zz': {
+				target: 'http://1.116.141.79',
+				changeOrigin: true,
+				ws: true,
+				pathRewrite: {
+					'^/zz': ''
 				}
 			}
 		}
@@ -41,4 +49,5 @@ module.exports = {
 			}
 		}
 	}
+	
 }

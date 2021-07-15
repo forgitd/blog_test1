@@ -9,7 +9,7 @@
 
 <script>
 
-import vueCanvasNest from "../../public/canvas-nest";
+import vueCanvasNest from "../assets/canvas-nest";
 
 export default {
     name: 'welcomePage',

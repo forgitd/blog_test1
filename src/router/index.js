@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 const Welcome = () => import("../views/Welcome")
 const BlogPage = () => import("../views/BlogPage")
 const Header = () => import("../views/Header")
+const BlogDetail = () => import("../views/BlogDetail")
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,10 @@ const routes = [
   {
     path: "/header",
     component: Header
+  },
+  {
+    path: "/detail",
+    component: BlogDetail
   }
 ]
 

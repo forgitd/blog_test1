@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import vueCanvasNest from "../../public/canvas-nest";
+import vueCanvasNest from "../assets/canvas-nest";
 import Header from "./Header";
 import Blog from "./Blog";
 export default {
