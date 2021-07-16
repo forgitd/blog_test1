@@ -5,7 +5,7 @@ export default {
 		GetAllBlogs().then(function (res) {
 			context.commit({
 				type: "allBlogInfos",
-				Blogs: res.data
+				Blogs: res.data.reverse()
 			})
 		})
 	}

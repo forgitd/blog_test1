@@ -1,8 +1,13 @@
 <template>
   <div id="blog_detail">
-    <div  class="markdown-body blog_info">
-      <vue-markdown :source="data1" v-highlight></vue-markdown>
+    <div id="elecData_father">
+      <div  class="markdown-body blog_info">
+        <vue-markdown :source="data1" v-highlight></vue-markdown>
+
+      </div>
+      <vue-canvas-nest :config="config" :el="'#elecData_father'"></vue-canvas-nest>
     </div>
+
   </div>
 </template>
 
@@ -11,12 +16,19 @@ import {getDetailInfo} from "../network/Detail";
 import VueMarkdown from 'vue-markdown';
 import 'highlight.js/styles/github.css';
 import 'github-markdown-css';
+import vueCanvasNest from "vue-canvas-nest";
 
 export default {
   name: "BlogDetail",
   data() {
     return {
-      data1: String
+      data1: String,
+      config: {
+        color: "100, 0, 90",
+        opacity: 1,
+        zIndex: 1,
+        count: 100,
+      }
     }
   },
   methods: {
@@ -48,7 +60,8 @@ export default {
     })
   },
   components: {
-    VueMarkdown
+    VueMarkdown,
+    vueCanvasNest
   }
 }
 </script>

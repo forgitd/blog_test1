@@ -10,5 +10,6 @@ export default {
 	
 	setBlog_id(state, n) {
 		state.blog_id = n;
-	}
+	},
+	
 }

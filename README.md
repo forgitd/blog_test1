@@ -22,6 +22,9 @@ markdown文档存储问题
 
 详情页如何显示markdown文档
 
+
+
+```javascript
 ctrl shift r 替換修改
 
 //在页面刷新时将vuex里的信息保存到localStorage里
@@ -31,3 +34,15 @@ localStorage.setItem("messageStore",JSON.stringify(this.$store.state))
 
 localStorage.getItem("messageStore") &&
 this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore"))));
+```
+
+
+
+前端开发： 由协议和端口造成的跨域前台无能为力
+
+markdown格式字符串解析
+
+相关vue组件的使用（vue-canvas-nest）
+
+浏览器存储的逻辑->显示哪篇博客的判断
+

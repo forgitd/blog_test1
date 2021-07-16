@@ -9,11 +9,6 @@
           <p class="bottom">{{ items.comment }}</p>
       </div>
     </a>
-    <div class="blog_items">
-      <div class="blog_item" v-for="i in book">
-        <div>{{i}}</div>
-      </div>
-    </div>
   </div>
 
 </template>
@@ -23,8 +18,6 @@ export default {
   name: "Blog",
   data() {
     return {
-      book:  [1, 2, 3,4,5,6,7,7,7,7,7,77,7,7,7,7,7,7,7,7,7,7,4,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-        ,7,7,7,7,4,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7 ],
     }
   },
   methods: {
