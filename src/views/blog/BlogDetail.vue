@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {getDetailInfo} from "../network/Detail";
+import {getDetailInfo} from "../../network/Detail";
 import VueMarkdown from 'vue-markdown';
 import 'highlight.js/styles/github.css';
 import 'github-markdown-css';

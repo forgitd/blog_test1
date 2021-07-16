@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Welcome = () => import("../views/Welcome")
-const BlogPage = () => import("../views/BlogPage")
-const Header = () => import("../views/Header")
-const BlogDetail = () => import("../views/BlogDetail")
+const Welcome = () => import("../views/blog/Welcome")
+const BlogPage = () => import("../views/blog/BlogPage")
+const Header = () => import("../views/blog/Header")
+const BlogDetail = () => import("../views/blog/BlogDetail")
+const Article = () => import("../views/more/Articles")
+const Links = () => import("../views/more/Links")
+const Music = () => import("../views/more/Music")
+const Aboutme = () => import("../views/game/Aboutme")
+const Jottings = () => import("../views/game/Jottings")
 
 Vue.use(VueRouter)
 
@@ -19,7 +24,12 @@ const routes = [
   },
   {
     path: "/blogPage",
-    component: BlogPage
+    component: BlogPage,
+    children: [
+      {path: "articles", component: Article},
+      {path: "links", component: Links},
+      {path: "music", component: Music},
+    ]
   },
   {
     path: "/header",
@@ -28,6 +38,14 @@ const routes = [
   {
     path: "/detail",
     component: BlogDetail
+  },
+  {
+    path: "/aboutme",
+    component: Aboutme
+  },
+  {
+    path: "/jottings",
+    component: Jottings
   }
 ]
 

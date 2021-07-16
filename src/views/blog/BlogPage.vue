@@ -5,6 +5,7 @@
         <div class="test_box">
           <Header class="left"/>
         </div>
+
         <div class="test_box_1">
           <Blog class="right"/>
         </div>
@@ -39,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-  @import "../assets/css/normalize.css";
+  @import "../../assets/css/normalize.css";
 
   .body_box {
     margin: 0;

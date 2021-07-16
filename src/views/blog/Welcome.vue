@@ -2,7 +2,7 @@
   <div @click="AfterClick" class="tBox" id="elecData_father">
     <vue-canvas-nest :config="config" :el="'#elecData_father'"></vue-canvas-nest>
     <transition name="el-zoom-in-left" >
-      <img v-show="show2" class="transition-box" src="../assets/img/b2.png" alt="空空如也"/>
+      <img v-show="show2" class="transition-box" src="../../assets/img/b2.png" alt="空空如也"/>
     </transition>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style>
-  @import "../assets/css/normalize.css";
+  @import "../../assets/css/normalize.css";
 
   .transition-box {
     max-width: 100%;

@@ -8,7 +8,7 @@
         <header id="header" class="inner">
 
           <a href="/" class="profilepic">
-            <img src="../assets/img/a1.png"  class="js-avatar">
+            <img src="../../assets/img/a1.png" class="js-avatar">
           </a>
 
           <hgroup>
@@ -17,16 +17,47 @@
 
           <nav class="header-menu">
             <ul>
-              <li class="li_none_p"><a href="/">主页</a></li>
-              <li class="li_none_p"><a href="/">随笔</a></li>
+              <li class="li_none_p">
+                <a href="/" >主页</a>
+              </li>
+              <li class="li_none_p">
+                <a href="javascript:void(0)" @click="$router.push('/jottings')">随笔</a>
+              </li>
+              <li class="li_none_p">
+                <el-popover
+                  placement="right"
+                  width="400"
+                  trigger="click">
+                  <iframe frameborder="no" marginwidth="0" marginheight="0" width="330"
+                          height="86" src="http://music.163.com/outchain/player?type=2&amp;id=1410210736&amp;auto=1&amp;height=66"></iframe>
+                  <a slot="reference" style="cursor: pointer">
+                    音乐
+                  </a>
+                </el-popover>
+              </li>
             </ul>
           </nav>
 
           <nav class="header-smart-menu">
             <a  href="javascript:void(0)">所有文章&nbsp;</a>
-            <a  href="javascript:void(0)">友链&nbsp;</a>
-            <a  href="javascript:void(0)">关于我</a>
+            <a  href="javascript:void(0)" @click="drawer = true">
+              <el-drawer
+                class="test"
+                title="友情链接"
+                :visible.sync="drawer"
+                direction="rtl"
+                :append-to-body="true"
+                >
+                <div v-for="url in urls" class="url_style">
+                  {{ url }}
+                </div>
+
+              </el-drawer>
+              友链&nbsp;
+            </a>
+            <a  href="javascript:void(0)" @click="$router.push('/aboutme')">关于我</a>
           </nav>
+
 
         </header>
 
@@ -38,7 +69,20 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data() {
+    return {
+      drawer: false,
+      urls: ["https://forgitd.github.io/","https://www.bilibili.com/",
+             "https://music.163.com/outchain/player?type=2&id=1410210736&auto=1&height=66",
+             "https://cn.vuejs.org/","https://github.com/",
+             "https://element.eleme.cn/#/zh-CN/component"]
+    }
+  },
+  methods: {
+
+  }
+
 }
 </script>
 
@@ -52,7 +96,7 @@ export default {
   .left-col {
     /*position: sticky;*/
     /*top: 655px;*/
-    z-index: 9;
+    z-index: -1 !important;
     /*height: 100%;*/
     width: 300PX;
   }
@@ -113,6 +157,18 @@ export default {
 
   .li_none_p {
     list-style-type: none;
+  }
+
+  .url_style {
+    font-size: 20PX;
+    font-weight: 300;
+    margin: 12PX 28PX;
+    color: #0C0C0C;
+    font-family: "Freestyle Script";
+
+  }
+  .test {
+    font-size: 20PX;
   }
 
 </style>
