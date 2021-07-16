@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     todetail(i) {
-      console.log(i);
       this.$router.push({
         path: "/detail",
         query: {
@@ -39,7 +38,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$store.state.Blogs);
     this.$store.dispatch("updateAllBlogs");
   }
 }

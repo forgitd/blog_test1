@@ -11,17 +11,21 @@
     "canvas-nest.js": "^2.0.4",
     "core-js": "^2.6.5",
     "element-ui": "^2.15.3",
+    "github-markdown-css": "^4.0.0",
     "highlight.js": "^11.1.0",
     "lib-flexible": "^0.3.2",
     "marked": "^2.1.3",
     "postcss-px2rem": "^0.3.0",
+    "text-loader": "0.0.1",
     "vue": "^2.6.10",
+    "vue-markdown": "^2.2.4",
     "vue-router": "^3.0.3",
     "vue-template-compiler": "^2.6.14",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.0",
-    "@vue/cli-service": "^3.12.0"
+    "@vue/cli-service": "^3.12.0",
+    "vue-markdown-loader": "^0.6.2"
   }
 }

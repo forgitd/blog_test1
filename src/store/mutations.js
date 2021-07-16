@@ -6,5 +6,9 @@ export default {
 		for (let i = 0; i < payload.Blogs.length; i++) {
 			state.Blogs.push(payload.Blogs[i])
 		}
+	},
+	
+	setBlog_id(state, n) {
+		state.blog_id = n;
 	}
 }

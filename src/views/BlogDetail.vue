@@ -1,11 +1,16 @@
 <template>
-  <div id="blog_detail" v-highlight v-html="data1" style="width: 800px; height: 800px;">
-    {{ data1 }}
+  <div id="blog_detail">
+    <div  class="markdown-body blog_info">
+      <vue-markdown :source="data1" v-highlight></vue-markdown>
+    </div>
   </div>
 </template>
 
 <script>
 import {getDetailInfo} from "../network/Detail";
+import VueMarkdown from 'vue-markdown';
+import 'highlight.js/styles/github.css';
+import 'github-markdown-css';
 
 export default {
   name: "BlogDetail",
@@ -14,22 +19,50 @@ export default {
       data1: String
     }
   },
+  methods: {
+
+  },
   created() {
+    this.$store.commit("setBlog_id", this.$route.query.id)
+
+
+    //在页面刷新时将vuex里的信息保存到localStorage里
+    window.addEventListener("beforeunload",()=>{
+      localStorage.setItem("messageStore",JSON.stringify(this.$store.state))
+    })
+
+    localStorage.getItem("messageStore") &&
+    this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore"))));
+
 
     let blog =  this.$store.state.Blogs.filter((n) => {
-      return n.id == this.$route.query.id
+      if (this.$route.query.id ) {
+        return  n.id == this.$route.query.id
+      } else {
+        return n.id == this.$store.state.blog_id
+      }
     })
-    console.log(blog);
+
     getDetailInfo(blog[0].md_url).then(res => {
-      console.log(res.data);
       this.data1 = res.data;
-
     })
-
+  },
+  components: {
+    VueMarkdown
   }
 }
 </script>
 
 <style scoped>
+  #blog_detail{
+    margin: 0;
+    padding: 0;
+    background-color: white;
 
+  }
+ .blog_info {
+   max-width: 1000PX;
+   margin: 15PX auto 0;
+   background-color: #eee;
+ }
 </style>

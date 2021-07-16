@@ -21,3 +21,13 @@ comment 简介
 markdown文档存储问题
 
 详情页如何显示markdown文档
+
+ctrl shift r 替換修改
+
+//在页面刷新时将vuex里的信息保存到localStorage里
+window.addEventListener("beforeunload",()=>{
+localStorage.setItem("messageStore",JSON.stringify(this.$store.state))
+})
+
+localStorage.getItem("messageStore") &&
+this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore"))));

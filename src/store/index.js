@@ -13,7 +13,8 @@ export default new Vuex.Store({
   state: {
     Blogs: [
       {id: Number, title: String, comment: String, date: Date, md_url: String}
-    ]
+    ],
+    blog_id: Number
   },
   mutations,
   actions,
