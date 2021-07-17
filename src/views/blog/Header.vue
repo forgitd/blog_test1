@@ -39,7 +39,7 @@
           </nav>
 
           <nav class="header-smart-menu">
-            <a  href="javascript:void(0)">所有文章&nbsp;</a>
+            <a  href="javascript:void(0)" @click="toMainPage">所有文章&nbsp;</a>
             <a  href="javascript:void(0)" @click="drawer = true">
               <el-drawer
                 class="test"
@@ -80,7 +80,20 @@ export default {
     }
   },
   methods: {
+    toMainPage() {
+      console.log(this.cFlag)
+      if (this.cFlag === false) {
 
+        this.$emit('allArticles');
+      }
+
+    }
+  },
+  props: {
+    cFlag: {
+      type: Boolean,
+      default: false
+    }
   }
 
 }
