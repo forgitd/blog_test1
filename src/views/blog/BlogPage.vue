@@ -3,20 +3,20 @@
     <div class="basic_page" id="elecData_father">
       <div id="body_box_info">
         <div class="test_box">
-          <Header class="left" @allArticles="showArticles" :cflag="flag"/>
+          <Header class="left" @allArticles="showArticles" :cFlag="flag"/>
         </div>
 
         <div class="test_box_middle_none"  id="box_middle">
           <div class="box_in_search">
             <div class="input_tip">搜索：</div>
 
-            <input type="text" value="" class="layui-input input_box"
-                   @input=" searchInfo = $event.target.value " />
+            <input type="text" class="layui-input input_box"
+                   @input=" getInputs " />
 
             <hr>
 
             <div v-for="item in $store.getters.filterBlogs(searchInfo)" class="item_search">
-              <div style="margin: 3PX;cursor: pointer" v-rainbow @click="toSearchDetail(item.id)" >
+              <div style="cursor: pointer;text-align: center" v-rainbow @click="toSearchDetail(item.id)" >
                 {{ item.title }}
               </div>
 
@@ -92,8 +92,16 @@ export default {
           id: i
         }
       })
+    },
+
+    getInputs(event) {
+      this.searchInfo = event.target.value;
+      console.log(this.searchInfo);
     }
 
+  },
+  created() {
+    this.searchInfo = ""
   }
 }
 </script>
@@ -144,6 +152,7 @@ export default {
     display: none;
   }
   .test_box_middle {
+
     width: 300PX;
     margin-left: 305PX;
   }

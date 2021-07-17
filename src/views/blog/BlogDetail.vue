@@ -1,13 +1,14 @@
 <template>
   <div id="blog_detail">
-    <div id="elecData_father">
-      <div  class="markdown-body blog_info">
-        <vue-markdown :source="data1" v-highlight></vue-markdown>
+    <div class="blog_detail_box">
+      <div id="elecData_father">
+        <div  class="markdown-body blog_info" id="tocbot">
+          <vue-markdown :source="data1" v-highlight></vue-markdown>
 
+        </div>
+        <vue-canvas-nest :config="config" :el="'#elecData_father'"></vue-canvas-nest>
       </div>
-      <vue-canvas-nest :config="config" :el="'#elecData_father'"></vue-canvas-nest>
     </div>
-
   </div>
 </template>
 
@@ -17,6 +18,23 @@ import VueMarkdown from 'vue-markdown';
 import 'highlight.js/styles/github.css';
 import 'github-markdown-css';
 import vueCanvasNest from "vue-canvas-nest";
+import tocbot from "tocbot";
+
+
+
+tocbot.init({
+  headingsOffset: 40,
+  scrollSmoothOffset: -40,
+  // Where to render the table of contents.
+  tocSelector: '.js-toc',
+  // Where to grab the headings to build the table of contents.
+  contentSelector: '.js-toc-content',
+  // Which headings to grab inside of the contentSelector element.
+  headingSelector: 'h1, h2, h3, h4, h5, h6',
+  // For headings inside relative or absolute positioned containers within content.
+  hasInnerContainers: true,
+});
+
 
 export default {
   name: "BlogDetail",
@@ -28,7 +46,8 @@ export default {
         opacity: 1,
         zIndex: 1,
         count: 100,
-      }
+      },
+
     }
   },
   methods: {
@@ -67,15 +86,26 @@ export default {
 </script>
 
 <style scoped>
-  #blog_detail{
-    margin: 0;
-    padding: 0;
-    background-color: white;
 
+  #blog_detail{
+    margin: 0 auto;
+    padding: 0;
+    object-fit: cover;  /* 图像变形处理 */
+    background: url('../../assets/img/t1.png');
   }
- .blog_info {
-   max-width: 1000PX;
-   margin: 15PX auto 0;
-   background-color: #eee;
+
+ .blog_detail_box {
+   margin: 0 auto;
+   max-width: 860PX;
+   background-color: #8D8D8D;
+   opacity: 0.8;
+   border: 2px slategray solid;
+   border-radius: 5px;
  }
+  .blog_info {
+    max-width: 850PX;
+    margin: 5PX auto 0;
+    background-color: #eee;
+    opacity: 0.9;
+  }
 </style>
