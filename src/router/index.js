@@ -10,6 +10,8 @@ const Links = () => import("../views/more/Links")
 const Music = () => import("../views/more/Music")
 const Aboutme = () => import("../views/game/Aboutme")
 const Jottings = () => import("../views/game/Jottings")
+const Login = () => import("../views/blog/Login")
+const WriteBlog = () => import("../views/blog/WriteBlog")
 
 Vue.use(VueRouter)
 
@@ -21,6 +23,14 @@ const routes = [
   {
     path: "/Welcome",
     component: Welcome
+  },
+  {
+    path: "/write",
+    component: WriteBlog
+  },
+  {
+    path: "/login",
+    component: Login
   },
   {
     path: "/blogPage",

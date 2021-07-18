@@ -1,10 +1,12 @@
 <template>
+
   <div @click="AfterClick" class="tBox" id="elecData_father">
     <vue-canvas-nest :config="config" :el="'#elecData_father'"></vue-canvas-nest>
     <transition name="el-zoom-in-left" >
-      <img v-show="show2" class="transition-box" src="../../assets/img/b2.png" alt="空空如也"/>
+      <img v-show="show2" class="transition-box" src="../../assets/img/test.png" alt="空空如也"/>
     </transition>
   </div>
+
 </template>
 
 <script>
@@ -26,10 +28,22 @@ export default {
     },
     methods: {
       AfterClick() {
-        this.show2 = !this.show2
-        setTimeout(() => {
-          this.$router.push('/blogPage');
-        },300)
+        let that = this;
+        document.addEventListener("click", function (e) {
+          if (e.clientX <= document.body.clientWidth/2 ) {
+            that.show2 = !that.show2
+            setTimeout(() => {
+              that.$router.push('/blogPage');
+            },300)
+          }
+          else {
+            that.show2 = !that.show2
+            setTimeout(() => {
+              that.$router.push('/login');
+            },300)
+          }
+        })
+
       }
     },
   components: {
@@ -41,6 +55,7 @@ export default {
 
 <style>
   @import "../../assets/css/normalize.css";
+
 
   .transition-box {
     max-width: 100%;

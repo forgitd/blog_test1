@@ -7,18 +7,18 @@
       <div class="intrude-less">
         <header id="header" class="inner">
 
-          <a href="/" class="profilepic">
+          <a href="javascript:void(0)" class="profilepic">
             <img src="../../assets/img/a1.png" class="js-avatar">
           </a>
 
           <hgroup>
-            <h1 class="header-author"><a href="/">keqi</a></h1>
+            <h1 class="header-author"><a href="javascript:void(0)">keqi</a></h1>
           </hgroup>
 
           <nav class="header-menu">
             <ul>
               <li class="li_none_p">
-                <a href="/" >主页</a>
+                <a href="javascript:void(0)" >主页</a>
               </li>
               <li class="li_none_p">
                 <a href="javascript:void(0)" @click="$router.push('/jottings')">随笔</a>
@@ -34,6 +34,11 @@
                     音乐
                   </a>
                 </el-popover>
+              </li>
+              <li class="li_none_p">
+                <a href="javascript:void(0)" @click="toWritePage">
+                  写博客
+                </a>
               </li>
             </ul>
           </nav>
@@ -81,12 +86,17 @@ export default {
   },
   methods: {
     toMainPage() {
-      console.log(this.cFlag)
+      // console.log(this.cFlag)
       if (this.cFlag === false) {
 
         this.$emit('allArticles');
       }
 
+    },
+    toWritePage() {
+      // 判断有没有登录 使用state中的属性 没有就重定向到登录页面
+      // 跳转这里要使用单引号
+      this.$router.push('/write');
     }
   },
   props: {
@@ -160,7 +170,9 @@ export default {
     text-transform: uppercase;
     float: none;
     min-height: 150PX;
-    margin-left: -30PX;
+    margin-left: -5PX;
+    margin-top: 25PX;
+    margin-bottom: 25PX;
     text-align: center;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
