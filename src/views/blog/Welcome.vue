@@ -29,20 +29,73 @@ export default {
     methods: {
       AfterClick() {
         let that = this;
-        document.addEventListener("click", function (e) {
-          if (e.clientX <= document.body.clientWidth/2 ) {
+
+        document.addEventListener("click", function h1(e) {
+          console.log(sessionStorage.getItem('flag'));
+
+          if (e.clientX <= document.body.clientWidth / 2) {
             that.show2 = !that.show2
             setTimeout(() => {
-              that.$router.push('/blogPage');
-            },300)
+              document.removeEventListener("click", h1);
+              that.$router.push('/blogPage').catch(err => {
+                console.log(err);
+              });
+              // return 0;
+            }, 300)
+          } else {
+            if (sessionStorage.getItem('flag') !== null) {
+              that.show2 = !that.show2
+              setTimeout(() => {
+                if (that.$store.state.flag === false) {
+                  that.$store.commit("updateFlag");
+                }
+                document.removeEventListener("click", h1);
+                that.$router.push('/blogPage').catch(err => {
+                  console.log(err);
+                });
+                // return 0;
+              }, 300)
+            } else {
+              that.show2 = !that.show2
+              setTimeout(() => {
+                document.removeEventListener("click", h1);
+                that.$router.push('/login').catch(err => {
+                  console.log(err);
+                });
+                // return 0;
+              }, 300)
           }
-          else {
-            that.show2 = !that.show2
-            setTimeout(() => {
-              that.$router.push('/login');
-            },300)
+
+
           }
         })
+
+
+        // document.addEventListener("click", function h1(e) {
+        //   if (e.clientX <= document.body.clientWidth/2 ) {
+        //     that.show2 = !that.show2;
+        //     setTimeout( () => {
+        //       document.removeEventListener("click", h1);
+        //       that.$router.push('/blogPage');
+        //     },300)
+        //   }
+        //   else {
+        //     // 这里应该判断是否有cookie  有就进入主页，并提示用户自动登录 -_-
+        //    if ( JSON.stringify(localStorage.getItem('user'))  === '{}') {
+        //      console.log('2222');
+        //      that.show2 = !that.show2
+        //      setTimeout(() => {
+        //        that.$router.push('/login');
+        //      },300)
+        //    } else {
+        //      console.log('33333');
+        //      that.show2 = !that.show2
+        //      setTimeout(() => {
+        //        that.$router.push('/blogPage');
+        //      },300)
+        //    }
+        //   }
+        // })
 
       }
     },

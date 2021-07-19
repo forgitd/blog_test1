@@ -4,7 +4,7 @@
       <div class="blog_comment_info" @click="todetail(items.id)">
           <div class="top">
             <p v-rainbow>{{ items.title }}</p>
-            <p style="color: #8D8D8D; font-size: 14px;">{{ items.date }}</p>
+            <p style="color: #8D8D8D; font-size: 14px;">{{ getStringDate(items.date) }}</p>
           </div>
           <p class="bottom">{{ items.comment }}</p>
       </div>
@@ -28,10 +28,21 @@ export default {
           id: i
         }
       })
+    },
+    getStringDate(date1) {
+      let date = new Date(date1);
+      let year = date.getFullYear();
+      let month = date.getMonth();  //0-11  表示 1-12
+      let day1 = date.getDate();  //获取一个月份的第几天
+      return year+"-"+(month+1)+"-"+day1
     }
+  },
+  computed: {
+
   },
   created() {
     this.$store.dispatch("updateAllBlogs");
+
   }
 }
 </script>

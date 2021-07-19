@@ -5,3 +5,14 @@ export function GetAllBlogs() {
 		url: "/getBlogs"
 	})
 }
+
+export function Login_Methods(username, password) {
+	return request({
+		url: "/login_test",
+		methods: 'get',
+		params: {
+			username: username,
+			password: password
+		}
+	})
+}
