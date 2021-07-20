@@ -23,7 +23,8 @@ export default {
   methods: {
     todetail(i) {
       this.$store.commit("setBlog_id", i)
-      this.$store.dispatch("updateReviews",i);
+      // this.$store.dispatch("updateReviews",i);
+      localStorage.setItem("blog_id", i)
       this.$router.push({
         path: "/detail",
         query: {

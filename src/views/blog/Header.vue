@@ -95,7 +95,9 @@ export default {
     },
     toWritePage() {
       // 判断有没有登录 使用state中的属性 没有就重定向到登录页面
-      if ( this.$store.state.flag && sessionStorage.getItem('flag')) {
+      // console.log(this.$store.state.flag);
+      // console.log(this.$store.state.common_flag);
+      if ( sessionStorage.getItem('flag')) {
         this.$router.push('/write');
       } else {
         this.$router.push('/login');

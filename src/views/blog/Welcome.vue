@@ -31,7 +31,7 @@ export default {
         let that = this;
 
         document.addEventListener("click", function h1(e) {
-          console.log(sessionStorage.getItem('flag'));
+          // console.log(sessionStorage.getItem('flag'));
 
           if (e.clientX <= document.body.clientWidth / 2) {
             that.show2 = !that.show2

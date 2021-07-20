@@ -13,17 +13,16 @@
     <div>
       <p>评论:</p>
       <div>
-        <div v-if="$store.state.reviews !== null">
-          <div v-for="review in $store.state.reviews" >
-            <p>
-              {{ review.id_user_name }}
-            </p>
-            <p>{{ getFormateDateByMe(review.date) }}</p>
-            <div>{{review.comment}}</div>
-          </div>
-
+        <div v-if="! this.reviews.length">
+          没有评论
         </div>
-        <div v-else>没有评论</div>
+        <div v-for="review in this.reviews" >
+          <p>
+            {{ review.id_user_name }}
+          </p>
+          <p>{{ getFormateDateByMe(review.date) }}</p>
+          <div>{{review.comment}}</div>
+        </div>
 
         <div>
           <textarea placeholder="评论" v-model="commitValue"/>
@@ -41,7 +40,8 @@ import 'highlight.js/styles/github.css';
 import 'github-markdown-css';
 import vueCanvasNest from "vue-canvas-nest";
 import tocbot from "tocbot";
-import {Commit} from "../../network/Detail";
+import {Commit,getReviews} from "../../network/Detail";
+
 
 tocbot.init({
   headingsOffset: 40,
@@ -70,17 +70,56 @@ export default {
       },
       commitValue: {
         default: ""
-      }
+      },
+      reviews: [
+        {id_review: Number, id_blog: Number, comment: String, date: Date, id_user_name: String}
+      ]
 
     }
   },
   methods: {
     commit_review() {
-      if (this.$store.state.common_flag && sessionStorage.getItem("common_flag")) {
+      // console.log(this.$store.state.common_flag);
+      let flag1 = JSON.parse(sessionStorage.getItem("common_flag"))
+      let that = this;
+      // console.log(flag1);
+      if (sessionStorage.getItem("flag")) {
+        // console.log(sessionStorage.getItem("username"));
+        let data1 = sessionStorage.getItem("username");
+        let id = JSON.parse(localStorage.getItem("blog_id"));
+        Commit(id, this.commitValue, data1).then(
+          res => {
+            if (res.data === true) {
+              getReviews(localStorage.getItem("blog_id")).then(
+                res => {
+                  this.reviews = res.data
+                }
+              )
+              that.commitValue = ""
+            } else {
+              alert("出错")
+            }
+          }
+        );
+      } else if ( flag1 ) {
         let data = JSON.parse(sessionStorage.getItem("username"));
-        console.log(data);
-        Commit(this.$store.state.blog_id, this.commitValue, data.name_c);
-        this.$store.dispatch("updateReviews", this.$store.state.blog_id);
+        // let data1 = sessionStorage.getItem("username");
+        let id = JSON.parse(localStorage.getItem("blog_id"))
+        Commit(id, this.commitValue, data.name_c).then(
+          res => {
+            if (res.data === true) {
+              getReviews(localStorage.getItem("blog_id")).then(
+                res => {
+                  this.reviews = res.data
+                }
+              )
+              that.commitValue = ""
+            } else {
+              alert("出错")
+            }
+          }
+        );
+
       } else {
         this.$router.push('/login');
       }
@@ -100,8 +139,10 @@ export default {
   },
   created() {
     // console.log(this.$store.state.blog_id)
+    // console.log(JSON.parse(localStorage.getItem("blog_id")) );
     // this.$store.commit("setBlog_id", this.$route.query.id)
     this.commitValue = ""
+
 
 
     //在页面刷新时将vuex里的信息保存到localStorage里
@@ -113,17 +154,30 @@ export default {
     this.$store.replaceState(Object.assign(this.$store.state,JSON.parse(localStorage.getItem("messageStore"))));
 
 
+    // console.log(this.$store.state.Blogs)
+
+
+
     let blog =  this.$store.state.Blogs.filter((n) => {
-      if (this.$route.query.id ) {
-        return  n.id == this.$route.query.id
-      } else {
-        return n.id == this.$store.state.blog_id
+      if ( localStorage.getItem("blog_id") ) {
+        return  Number(n.id) === Number(localStorage.getItem("blog_id"))
       }
+      // else {
+      //   console.log(this.$route.query.id);
+      //   return n.id === this.$store.state.blog_id
+      // }
     })
 
     getDetailInfo(blog[0].md_url).then(res => {
       this.data1 = res.data;
     })
+
+
+    getReviews(localStorage.getItem("blog_id")).then(
+      res => {
+        this.reviews = res.data
+      }
+    )
   },
   components: {
     VueMarkdown,

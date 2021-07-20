@@ -18,8 +18,8 @@ export default new Vuex.Store({
     flag: false,
     common_flag: false,
     reviews: [
-      {id_review: Number, id_blog: Number, comment: String, date: Date, id_user_name: String}
-    ]
+      {id_review: Number, id_blog: Number, comment: String, date: Date, id_user_name: String}]
+    
   },
   mutations,
   actions,

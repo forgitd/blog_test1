@@ -56,6 +56,7 @@ export default {
               if (this.$store.state.common_flag === false) {
                 this.$store.commit("updateCommentFlag");
               }
+              // console.log(this.$store.state.common_flag);
               sessionStorage.setItem("username", JSON.stringify(res.data));
               sessionStorage.setItem("common_flag", this.$store.state.common_flag);
               this.$router.push('/blogPage').catch(err => {
