@@ -22,6 +22,8 @@ export default {
   },
   methods: {
     todetail(i) {
+      this.$store.commit("setBlog_id", i)
+      this.$store.dispatch("updateReviews",i);
       this.$router.push({
         path: "/detail",
         query: {

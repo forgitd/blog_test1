@@ -9,6 +9,28 @@
         <vue-canvas-nest :config="config" :el="'#elecData_father'"></vue-canvas-nest>
       </div>
     </div>
+
+    <div>
+      <p>评论:</p>
+      <div>
+        <div v-if="$store.state.reviews !== null">
+          <div v-for="review in $store.state.reviews" >
+            <p>
+              {{ review.id_user_name }}
+            </p>
+            <p>{{ getFormateDateByMe(review.date) }}</p>
+            <div>{{review.comment}}</div>
+          </div>
+
+        </div>
+        <div v-else>没有评论</div>
+
+        <div>
+          <textarea placeholder="评论" v-model="commitValue"/>
+          <button @click="commit_review">提交</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,8 +41,7 @@ import 'highlight.js/styles/github.css';
 import 'github-markdown-css';
 import vueCanvasNest from "vue-canvas-nest";
 import tocbot from "tocbot";
-
-
+import {Commit} from "../../network/Detail";
 
 tocbot.init({
   headingsOffset: 40,
@@ -47,14 +68,40 @@ export default {
         zIndex: 1,
         count: 100,
       },
+      commitValue: {
+        default: ""
+      }
 
     }
   },
   methods: {
+    commit_review() {
+      if (this.$store.state.common_flag && sessionStorage.getItem("common_flag")) {
+        let data = JSON.parse(sessionStorage.getItem("username"));
+        console.log(data);
+        Commit(this.$store.state.blog_id, this.commitValue, data.name_c);
+        this.$store.dispatch("updateReviews", this.$store.state.blog_id);
+      } else {
+        this.$router.push('/login');
+      }
+    },
 
+    getFormateDateByMe(date1) {
+      let date = new Date(date1);
+      let year = date.getFullYear();
+      let month = date.getMonth();  //0-11  表示 1-12
+      let day1 = date.getDate();  //获取一个月份的第几天
+      let hour = date.getHours();
+      let min = date.getMinutes();
+      let sec = date.getSeconds();
+
+      return year + "-" + (month + 1) + "-" + day1 + " " + hour + ":" + min + ":" + sec
+    }
   },
   created() {
-    this.$store.commit("setBlog_id", this.$route.query.id)
+    // console.log(this.$store.state.blog_id)
+    // this.$store.commit("setBlog_id", this.$route.query.id)
+    this.commitValue = ""
 
 
     //在页面刷新时将vuex里的信息保存到localStorage里
@@ -91,7 +138,7 @@ export default {
     margin: 0 auto;
     padding: 0;
     object-fit: cover;  /* 图像变形处理 */
-    background: url('../../assets/img/t1.png');
+    /*background: url('../../assets/img/t1.png');*/
   }
 
  .blog_detail_box {

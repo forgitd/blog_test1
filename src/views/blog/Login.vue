@@ -56,6 +56,7 @@ export default {
               if (this.$store.state.common_flag === false) {
                 this.$store.commit("updateCommentFlag");
               }
+              sessionStorage.setItem("username", JSON.stringify(res.data));
               sessionStorage.setItem("common_flag", this.$store.state.common_flag);
               this.$router.push('/blogPage').catch(err => {
                 console.log(err);});
@@ -78,6 +79,7 @@ export default {
               this.$store.dispatch("updateAllBlogs");
               sessionStorage.setItem("common_flag", this.$store.state.common_flag);
               sessionStorage.setItem("flag", this.$store.state.flag);
+              sessionStorage.setItem("username", "keqi");
               this.$router.push('/blogPage').catch(err => {
                 console.log(err);});
 

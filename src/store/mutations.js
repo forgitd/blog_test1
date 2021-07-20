@@ -18,5 +18,14 @@ export default {
 	
 	updateCommentFlag(state) {
 		state.common_flag = !state.common_flag
-	}
+	},
+	
+	allReviewInfos(state, payload) {
+		if (state.reviews.length) {
+			state.reviews.splice(0, state.reviews.length)
+		}
+		for (let i = 0; i < payload.reviews.length; i++) {
+			state.reviews.push(payload.reviews[i])
+		}
+	},
 }

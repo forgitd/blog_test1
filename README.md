@@ -86,4 +86,7 @@ markdown格式字符串解析
 /getReview 获取某个博客id的所有评论  （需要将得到的日期格式化）    参数： id 返回值：评论列表
 /register 注册            参数： username  password  返回值：布尔
 /login_common 登录普通用户  参数： username  password 返回值：用户
+
+因为普通用户每次注册时不允许name相同，所以可以用name作为主键
+即更改评论表字段中的用户id为用户name
  

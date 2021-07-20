@@ -8,7 +8,7 @@ import moduleA from "./modules/moduleA";
 
 Vue.use(Vuex)
 
-const a = moduleA
+// const a = moduleA
 export default new Vuex.Store({
   state: {
     Blogs: [
@@ -16,12 +16,14 @@ export default new Vuex.Store({
     ],
     blog_id: Number,
     flag: false,
-    common_flag: false
+    common_flag: false,
+    reviews: [
+      {id_review: Number, id_blog: Number, comment: String, date: Date, id_user_name: String}
+    ]
   },
   mutations,
   actions,
   getters,
   modules: {
-    a
   }
 })
