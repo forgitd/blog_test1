@@ -70,3 +70,20 @@ markdown格式字符串解析
 // 跳转这里要使用单引号
 
 
+## 7.20
+修改因异步而主页数据显示迟缓的bug
+查看本地存储的一些问题
+博客详情页增加评论功能：
+-   用户普通登录可以评论
+-   注册  （页面 和 服务器 数据库）
+-   详情页 （评论区 写评论 增加对应数据库，以博客id为主键，用户，日期，评论内容）
+        
+
+后端接口：  1.116.141.79:8082
+/getBlogs 得到所有博客内容         无参   返回值：所有博客信息
+/login_test 登录keqi           参数： username  password   返回值：keqi
+/addReview 增加一条评论 （不需要加入日期）    参数：Integer id_blog, String comment, Integer id_user_c  返回值：布尔
+/getReview 获取某个博客id的所有评论  （需要将得到的日期格式化）    参数： id 返回值：评论列表
+/register 注册            参数： username  password  返回值：布尔
+/login_common 登录普通用户  参数： username  password 返回值：用户
+ 

@@ -14,5 +14,9 @@ export default {
 	
 	updateFlag(state) {
 		state.flag = !state.flag
+	},
+	
+	updateCommentFlag(state) {
+		state.common_flag = !state.common_flag
 	}
 }

@@ -1,11 +1,27 @@
 <template>
   <div>
-    <div class="login-box">
+    <div>
+      <button @click="flag = !flag">登录</button>
+      <button @click="flag = !flag">注册</button>
+    </div>
+    <div class="login-box" v-if="flag" key="register">
+      <h1>Register</h1>
+
+      <input class="text-box" type="text" placeholder="username" v-model="user.username"/>
+      <input class="text-box" type="password" placeholder="password" v-model="user.password"/>
+      <a class="submit" @click="toRegister" href="javascript:void(0)">Submit</a>
+
+    </div>
+
+    <div class="login-box" v-if="!flag" key="login">
 
       <h1>Login</h1>
 
       <input class="text-box" type="text" placeholder="username" v-model="user.username"/>
       <input class="text-box" type="password" placeholder="password" v-model="user.password"/>
+      <input type="radio" name="name" v-model="radioFlag" value="1" @change="getRadioValue"/>普通登录 &nbsp;
+      <input type="radio" name="name" v-model="radioFlag" value="2" @change="getRadioValue"/>管理员登录
+      <br>
       <a class="submit" @click="toLogin" href="javascript:void(0)">Submit</a>
 
     </div>
@@ -13,7 +29,7 @@
 </template>
 
 <script>
-import { Login_Methods } from "../../network/Blog"
+import { Login_Methods,Register,LoginCommon } from "../../network/Blog"
 
 export default {
   name: "Login",
@@ -22,27 +38,70 @@ export default {
       user: {
         username: String,
         password: String
-      }
+      },
+      flag: false,
+      radioFlag: 1
     }
   },
   // 登陆时验证是否登录成功 --  想服务器发送请求 登录成功之后在vuex中设置内存管理
   methods: {
     toLogin() {
-      Login_Methods(this.user.username, this.user.password)
-        .then( res => {
-          if (res.data === "") {
-            alert("登录失败");
-          } else {
-            if (this.$store.state.flag === false) {
-              this.$store.commit("updateFlag");
+      if ( this.radioFlag === 1) {
+        LoginCommon(this.user.username, this.user.password)
+          .then( res => {
+            if (res.data === "" ) {
+              alert("登录失败")
+            } else {
+              this.$store.dispatch("updateAllBlogs");
+              if (this.$store.state.common_flag === false) {
+                this.$store.commit("updateCommentFlag");
+              }
+              sessionStorage.setItem("common_flag", this.$store.state.common_flag);
+              this.$router.push('/blogPage').catch(err => {
+                console.log(err);});
             }
+          })
 
-            sessionStorage.setItem("flag", this.$store.state.flag);
-            this.$router.push('/blogPage').catch(err => {
-              console.log(err);});
+      } else  {
+        Login_Methods(this.user.username, this.user.password)
+          .then( res => {
+            if (res.data === "") {
+              alert("登录失败");
+            } else {
+              if (this.$store.state.flag === false) {
+                this.$store.commit("updateFlag");
+              }
+              if (this.$store.state.common_flag === false) {
+                this.$store.commit("updateCommentFlag");
+              }
 
+              this.$store.dispatch("updateAllBlogs");
+              sessionStorage.setItem("common_flag", this.$store.state.common_flag);
+              sessionStorage.setItem("flag", this.$store.state.flag);
+              this.$router.push('/blogPage').catch(err => {
+                console.log(err);});
+
+            }
+          })
+      }
+
+    },
+
+    toRegister() {
+      Register(this.user.username, this.user.password)
+        .then( res => {
+          if (res.data === true) {
+            alert("注册成功");
+            this.flag = ! this.flag;
+          } else {
+            alert("注册失败")
           }
         })
+    },
+
+    getRadioValue() {
+      console.log(this.radioFlag);
+
     }
   },
   created() {

@@ -16,3 +16,27 @@ export function Login_Methods(username, password) {
 		}
 	})
 }
+
+export function Register(username, password) {
+	return request({
+		url: "/register",
+		methods: 'get',
+		params: {
+			username: username,
+			password: password
+		}
+		
+	})
+}
+
+export function LoginCommon(username, password) {
+	return request({
+		url: "/login_common",
+		methods: 'get',
+		params: {
+			username: username,
+			password: password
+		}
+		
+	})
+}

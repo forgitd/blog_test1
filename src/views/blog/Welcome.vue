@@ -35,6 +35,7 @@ export default {
 
           if (e.clientX <= document.body.clientWidth / 2) {
             that.show2 = !that.show2
+            that.$store.dispatch("updateAllBlogs");
             setTimeout(() => {
               document.removeEventListener("click", h1);
               that.$router.push('/blogPage').catch(err => {
@@ -49,6 +50,7 @@ export default {
                 if (that.$store.state.flag === false) {
                   that.$store.commit("updateFlag");
                 }
+                that.$store.dispatch("updateAllBlogs");
                 document.removeEventListener("click", h1);
                 that.$router.push('/blogPage').catch(err => {
                   console.log(err);
