@@ -24,16 +24,16 @@
                 <a href="javascript:void(0)" @click="$router.push('/jottings')">随笔</a>
               </li>
               <li class="li_none_p">
-<!--                <el-popover-->
-<!--                  placement="right"-->
-<!--                  width="400"-->
-<!--                  trigger="click">-->
-<!--                  <iframe frameborder="no" marginwidth="0" marginheight="0" width="330"-->
-<!--                          height="86" src="http://music.163.com/outchain/player?type=2&amp;id=1410210736&amp;auto=1&amp;height=66"></iframe>-->
-<!--                  <a slot="reference" style="cursor: pointer">-->
-<!--                    音乐-->
-<!--                  </a>-->
-<!--                </el-popover>-->
+                <el-popover
+                  placement="right"
+                  width="400"
+                  trigger="click">
+                  <iframe frameborder="no" marginwidth="0" marginheight="0" width="330"
+                          height="86" src="http://music.163.com/outchain/player?type=2&amp;id=1410210736&amp;auto=1&amp;height=66"></iframe>
+                  <a slot="reference" style="cursor: pointer">
+                    音乐
+                  </a>
+                </el-popover>
               </li>
               <li class="li_none_p">
                 <a href="javascript:void(0)" @click="toWritePage">

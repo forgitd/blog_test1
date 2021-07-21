@@ -11,7 +11,10 @@
             <div class="input_tip">搜索：</div>
 
             <input type="text" class="layui-input input_box"
-                   @input=" getInputs " />
+                   @input=" getInputs "
+                   style="border-radius: 5px"/>
+
+
 
             <hr>
 
@@ -38,6 +41,9 @@
 import vueCanvasNest from "vue-canvas-nest";
 import Header from "./Header";
 import Blog from "./Blog";
+import Search from "../../components/Search";
+
+
 export default {
   name: "BlogPage",
   data() {
@@ -59,7 +65,8 @@ export default {
   components: {
     vueCanvasNest,
     Blog,
-    Header
+    Header,
+    Search
   },
   methods: {
     showArticles() {

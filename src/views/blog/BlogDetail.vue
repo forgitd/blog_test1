@@ -1,6 +1,6 @@
 <template>
   <div id="blog_detail">
-    <div class="blog_detail_box">
+    <div class="blog_detail_box" id="md_info">
       <div id="elecData_father">
         <div  class="markdown-body blog_info" id="tocbot">
           <vue-markdown :source="data1" v-highlight></vue-markdown>
@@ -10,25 +10,36 @@
       </div>
     </div>
 
-    <div>
-      <p>评论:</p>
-      <div>
-        <div v-if="! this.reviews.length">
-          没有评论
-        </div>
-        <div v-for="review in this.reviews" >
-          <p>
-            {{ review.id_user_name }}
-          </p>
-          <p>{{ getFormateDateByMe(review.date) }}</p>
-          <div>{{review.comment}}</div>
-        </div>
+    <div class="review">
+      <p class="review-tip">评论:</p>
 
-        <div>
-          <textarea placeholder="评论" v-model="commitValue"/>
-          <button @click="commit_review">提交</button>
+      <div class="review-box">
+        <div v-if="! this.reviews.length" class="review-judge">
+          <p style="color: red; font-size: 18PX;">没有评论 </p>
+        </div>
+        <div v-for="review in this.reviews" class="review-body" v-rainbow>
+          <hr style="color: #23262E; size: 1px; margin-top: 5PX;"/>
+          <div class="review-infos">
+            <p class="review-user" style="font-size: 20PX; color: black; margin: 0;">
+              {{ review.id_user_name }}
+            </p>
+            <p class="review-date" style="margin: 0;">{{ getFormateDateByMe(review.date) }}</p>
+
+
+
+          </div>
+
+          <div class="review-comment">{{review.comment}}</div>
+
+<!--          <hr style="color: #23262E; size: 1px; margin: 0;"/>-->
+        </div>
+        <div class="loading-state">没有更多评论</div>
+        <div class="review-the-article-none" id="review">
+          <textarea placeholder="发一条友善的评论吧" v-model="commitValue" class="review-input" />
+          <button @click="commit_review" class="review-commit">发表评论</button>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -41,7 +52,8 @@ import 'github-markdown-css';
 import vueCanvasNest from "vue-canvas-nest";
 import tocbot from "tocbot";
 import {Commit,getReviews} from "../../network/Detail";
-
+import jquery from "../../../node_modules/jquery/dist/jquery.js"
+import $ from "jquery"
 
 tocbot.init({
   headingsOffset: 40,
@@ -55,6 +67,7 @@ tocbot.init({
   // For headings inside relative or absolute positioned containers within content.
   hasInnerContainers: true,
 });
+
 
 
 export default {
@@ -178,10 +191,39 @@ export default {
         this.reviews = res.data
       }
     )
+
+
   },
   components: {
     VueMarkdown,
     vueCanvasNest
+  },
+  mounted() {
+
+    // let height = document.getElementById("md_info").offsetHeight;
+    setTimeout(() => {
+      // let height = parseInt($('#md_info div').get(0).offsetHeight)
+
+      let detail_body = document.getElementById("tocbot");
+      console.log($(detail_body).height());
+
+      // let review_height = document.getElementById("review");
+      // let review_height = parseInt($('.review-commit div').get(0).offsetHeight)
+
+      let review = document.getElementById("review");
+
+      window.onscroll = function h() {
+        // console.log($(document).scrollTop());
+        if ($(document).scrollTop() >= $(detail_body).height() - 400) {
+          review.setAttribute("class", "review-the-article");
+        } else {
+          review.setAttribute("class", "review-the-article-none");
+        }
+      }
+    },300)
+
+
+
   }
 }
 </script>
@@ -208,5 +250,101 @@ export default {
     margin: 5PX auto 0;
     background-color: #eee;
     opacity: 0.9;
+  }
+
+  .review {
+    max-width: 860PX;
+    margin: 10PX auto;
+    border: #8D8D8D 1px solid;
+    border-radius: 5px;
+    border-bottom: none;
+  }
+  .review-tip {
+    font-size: 22PX;
+    font-weight: 300;
+
+  }
+  .review-box {
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*align-items: center;*/
+  }
+  .review-infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #8D8D8D;
+    font-size: 16PX;
+    font-weight: 300;
+  }
+  .review-body {
+
+    /*padding-bottom: 5PX;*/
+    /*margin-bottom: 5PX;*/
+  }
+  .review-comment {
+    font-size: 18PX;
+    line-height: 18PX;
+    margin: 9PX 0;
+  }
+  .review-input {
+
+    border: none;
+    outline: none;
+    width: 700PX;
+    height: 50PX;
+    max-width: 850PX;
+    max-height: 50PX;
+    font-size: 14PX;
+    resize:none;
+    background: #f6f6f6;
+    color: black;
+    margin: 10PX auto 0;
+    display: inline;
+  }
+  .review-input:hover {
+    border: blue 1PX solid;
+    border-radius: 5PX;
+
+  }
+  .review-commit { /* 按钮美化 */
+    width: 100PX; /* 宽度 */
+    height: 40PX; /* 高度 */
+    border-width: 0; /* 边框宽度 */
+    border-radius: 5PX; /* 边框半径 */
+    background: red; /* 背景颜色 */
+    cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+    outline: none; /* 不显示轮廓线 */
+    /*font-family: Microsoft YaHei; !* 设置字体 *!*/
+    color: white; /* 字体颜色 */
+    font-size: 17PX; /* 字体大小 */
+    display: block;
+    margin: 0 auto;
+
+  }
+  .review-commit:hover { /* 鼠标移入按钮范围时改变颜色 */
+    background: #5599FF;
+  }
+  .review-the-article {
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 15PX;
+    background: #fff;
+    /*width: 100%;*/
+    z-index: 2;
+    /*display: none;*/
+    box-sizing: border-box;
+    margin-left: 60PX;
+  }
+  .loading-state {
+    height: 64px;
+    line-height: 64px;
+    font-size: 12px;
+    color: #99A2AA;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .review-the-article-none {
+    display: none;
   }
 </style>

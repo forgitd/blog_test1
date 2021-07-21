@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div>
-      <button @click="flag = !flag">登录</button>
-      <button @click="flag = !flag">注册</button>
+    <div style="display: flex;
+            justify-content: center; padding-top: 40PX">
+      <button @click="flag = flag? !flag : flag" class="layui-btn">登录</button>
+      <button @click="flag = flag? flag : !flag" class="layui-btn">注册</button>
     </div>
     <div class="login-box" v-if="flag" key="register">
       <h1>Register</h1>
@@ -19,8 +20,10 @@
 
       <input class="text-box" type="text" placeholder="username" v-model="user.username"/>
       <input class="text-box" type="password" placeholder="password" v-model="user.password"/>
-      <input type="radio" name="name" v-model="radioFlag" value="1" @change="getRadioValue"/>普通登录 &nbsp;
-      <input type="radio" name="name" v-model="radioFlag" value="2" @change="getRadioValue"/>管理员登录
+      <input type="radio" name="name" v-model="radioFlag" value="1" @change="getRadioValue" class="radio"/>
+      普通登录 &nbsp;
+      <input type="radio" name="name" v-model="radioFlag" value="2" @change="getRadioValue" class="radio"/>
+      管理员登录
       <br>
       <a class="submit" @click="toLogin" href="javascript:void(0)">Submit</a>
 
@@ -115,14 +118,15 @@ export default {
 </script>
 
 <style scoped>
+@import "../../assets/layui/css/layui.css";
 body {
   margin: 0;
   padding: 0;
 }
 
 .login-box {
-  width: 400px;
-  height: 400px;
+  width: 400PX;
+  height: 400PX;
   background: #3b3b3b;
 
   position: absolute;
@@ -136,28 +140,28 @@ body {
 .login-box h1 {
   color: white;
   /* font-weight: 700; */
-  font-size: 50px;
+  font-size: 50PX;
 }
 
 .text-box {
   display: block;
 
-  border: 2px solid #FFFFFF;
+  border: 2PX solid #FFFFFF;
   background: none;
 
-  margin: 20px auto;
+  margin: 20PX auto;
   text-align: center;
-  padding: 10px 5px;
+  padding: 10PX 5PX;
 
-  font-size: 20px;
+  font-size: 20PX;
 
   outline: none;
 
   color: #FFFFFF;
 
-  border-radius: 25px;
+  border-radius: 25PX;
 
-  width: 200px;
+  width: 200PX;
 
   transition: 0.25s;
 }
@@ -169,17 +173,17 @@ body {
   color: #FFFFFF;
   text-decoration: none;
 
-  border: 2px solid #FFFFFF;
-  margin: 20px auto;
-  padding: 10px 30px;
+  border: 2PX solid #FFFFFF;
+  margin: 20PX auto;
+  padding: 10PX 30PX;
   margin-top: 0;
-  border-radius: 25px;
+  border-radius: 25PX;
 
-  font-size: 20px;
+  font-size: 20PX;
 }
 
 .text-box:focus {
-  width: 250px;
+  width: 250PX;
   border-color: #f0f31a;
 }
 
