@@ -4,6 +4,7 @@
             justify-content: center; padding-top: 40PX">
       <button @click="flag = flag? !flag : flag" class="layui-btn">博客</button>
       <button @click="flag = flag? flag : !flag" class="layui-btn">评论</button>
+      <button @click="toAddBlog" class="layui-btn" >去写博客</button>
     </div>
 
     <div class="login-box" v-if="!flag" key="blog">
@@ -94,6 +95,11 @@ export default {
       console.log(item1.id_review);
       delReview(item1.id_review);
       this.reviewsData.splice(this.reviewsData.indexOf(item1),1)
+    },
+    toAddBlog() {
+      this.$router.push('/addBlog').catch(err => {
+        console.log(err);
+      });
     }
   },
   created() {

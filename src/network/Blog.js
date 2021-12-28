@@ -50,3 +50,16 @@ export function DelBlog(id) {
 		}
 	})
 }
+
+export function AddBlog(title, comment, date, md_url) {
+	return request({
+		url: "/addBlog",
+		methods: 'get',
+		params: {
+			title: title,
+			comment: comment,
+			date: date,
+			md_url: md_url
+		}
+	})
+}

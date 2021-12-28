@@ -7,6 +7,19 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'lib-flexible'
 import highlight from 'highlight.js';
 
+import VueMarkdownEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
+import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+
+import Prism from 'prismjs';
+
+VueMarkdownEditor.use(vuepressTheme, {
+  Prism,
+});
+
+Vue.use(VueMarkdownEditor);
+
 
 Vue.use(highlight);
 Vue.config.productionTip = false

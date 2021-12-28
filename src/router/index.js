@@ -13,6 +13,7 @@ const Jottings = () => import("../views/game/Jottings")
 const Login = () => import("../views/blog/Login")
 const WriteBlog = () => import("../views/blog/WriteBlog")
 const Index = () => import("../views/manage/index")
+const AddBlog = () => import("../views/manage/AddBlog")
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,10 @@ const routes = [
   {
     path: "/index",
     component: Index
+  },
+  {
+    path: "/addBlog",
+    component: AddBlog
   },
   {
     path: "/login",
