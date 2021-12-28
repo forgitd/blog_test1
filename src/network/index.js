@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function request(config) {
 	const instance = axios.create({
-		baseURL: "/api",
+		baseURL: "http://1.116.141.79:8082",
 		timeout: 5000
 	})
 	
@@ -11,7 +11,7 @@ export function request(config) {
 
 export function request1(config) {
 	const instance = axios.create({
-		baseURL: "/zz",
+		baseURL: "http://1.116.141.79:8080",
 		timeout: 5000
 	})
 	

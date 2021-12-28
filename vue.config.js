@@ -13,30 +13,30 @@ module.exports = {
 			}
 		}
 	},
-	devServer: {
-		open: true,
-		host: 'localhost',
-		port: 8080,
-		https: false,
-		proxy: {
-			'/api': {
-				target: 'http://1.116.141.79:8082',
-				changeOrigin: true,
-				ws: true,
-				pathRewrite: {
-					'^/api': ''
-				}
-			},
-			'/zz': {
-				target: 'http://1.116.141.79',
-				changeOrigin: true,
-				ws: true,
-				pathRewrite: {
-					'^/zz': ''
-				}
-			}
-		}
-	},
+	// devServer: {
+	// 	open: true,
+	// 	host: 'localhost',
+	// 	port: 8080,
+	// 	https: false,
+	// 	proxy: {
+	// 		'/api': {
+	// 			target: 'http://1.116.141.79:8082',
+	// 			changeOrigin: true,
+	// 			ws: true,
+	// 			pathRewrite: {
+	// 				'^/api': ''
+	// 			}
+	// 		},
+	// 		'/zz': {
+	// 			target: 'http://1.116.141.79:8080',
+	// 			changeOrigin: true,
+	// 			ws: true,
+	// 			pathRewrite: {
+	// 				'^/zz': ''
+	// 			}
+	// 		}
+	// 	}
+	// },
 	css: {
 		loaderOptions: {
 			css: {},

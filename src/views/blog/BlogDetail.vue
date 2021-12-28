@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import {getDetailInfo} from "../../network/Detail";
 import VueMarkdown from 'vue-markdown';
 import 'highlight.js/styles/github.css';
@@ -180,10 +181,9 @@ export default {
       //   return n.id === this.$store.state.blog_id
       // }
     })
+    console.log(blog[0].md_url);
+    this.data1 = blog[0].md_url;
 
-    getDetailInfo(blog[0].md_url).then(res => {
-      this.data1 = res.data;
-    })
 
 
     getReviews(localStorage.getItem("blog_id")).then(

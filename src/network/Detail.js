@@ -16,6 +16,23 @@ export function getReviews(id) {
 	})
 }
 
+export function getAllReviews() {
+	return request({
+		url: "/getRes",
+		methods: 'get'
+	})
+}
+
+export function delReview(id) {
+	return request({
+		url: "/deleteReview",
+		methods: 'get',
+		params: {
+			id: id,
+		}
+	})
+}
+
 export function Commit(id, comment, name) {
 	return request({
 		url: "/addReview",

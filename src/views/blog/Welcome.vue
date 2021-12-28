@@ -116,5 +116,6 @@ export default {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;  /* 图像变形处理 */
+
   }
 </style>

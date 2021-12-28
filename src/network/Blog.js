@@ -40,3 +40,13 @@ export function LoginCommon(username, password) {
 		
 	})
 }
+
+export function DelBlog(id) {
+	return request({
+		url: "/delBlog",
+		methods: 'get',
+		params: {
+			id: id,
+		}
+	})
+}

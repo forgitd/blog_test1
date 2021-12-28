@@ -12,6 +12,7 @@ const Aboutme = () => import("../views/game/Aboutme")
 const Jottings = () => import("../views/game/Jottings")
 const Login = () => import("../views/blog/Login")
 const WriteBlog = () => import("../views/blog/WriteBlog")
+const Index = () => import("../views/manage/index")
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: "/write",
     component: WriteBlog
+  },
+  {
+    path: "/index",
+    component: Index
   },
   {
     path: "/login",

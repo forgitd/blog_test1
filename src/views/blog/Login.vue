@@ -84,7 +84,7 @@ export default {
               sessionStorage.setItem("common_flag", this.$store.state.common_flag);
               sessionStorage.setItem("flag", this.$store.state.flag);
               sessionStorage.setItem("username", "keqi");
-              this.$router.push('/blogPage').catch(err => {
+              this.$router.push('/index').catch(err => {
                 console.log(err);});
 
             }
